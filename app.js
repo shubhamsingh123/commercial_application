@@ -1,19 +1,20 @@
+require("dotenv").config();
+
 const express = require("express");
 const mongoose = require("mongoose");
 
 const app = express();
 
-// map global promise - get rid of warning
-mongoose.Promise = global.Promise;
-
 // Connect to mongoose
 mongoose
-  .connect("mongodb://localhost/vidjot-dev", {
-    useMongoClient: true,
+  .connect(process.env.DATABASE, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
   })
-  .then(() => console.log("mongodb connect ..."))
+  .then(() => console.log("MONGODB CONNECTED ..."))
   .catch((error) => console.log(error));
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.listen(port, console.log(`The server is running on ${port}`));
