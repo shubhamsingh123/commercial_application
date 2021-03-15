@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const authRoute = require("./routes/auth");
 
 const app = express();
 
@@ -18,10 +19,16 @@ mongoose
   .then(() => console.log("MONGODB CONNECTED ..."))
   .catch((error) => console.log(error));
 
+// Middleware
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
 
+// My Routes
+
+app.use("/api", authRoute);
+
+// Port
 const port = process.env.PORT || 3000;
 // const port = 3000;
 
