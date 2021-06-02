@@ -1,35 +1,35 @@
-require("dotenv").config();
+// Server throw a number 
+// 200-> ok
+// 404-> Not Found
+// 401-> Unauthorized
+// 500-> Internal Server Error
 
-const express = require("express");
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
-const cors = require("cors");
-const authRoute = require("./routes/auth");
+const express = require('express');
 
 const app = express();
 
-// Connect to mongoose
-mongoose
-  .connect(process.env.DATABASE, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-  })
-  .then(() => console.log("MONGODB CONNECTED ..."))
-  .catch((error) => console.log(error));
+app.get('/' , (req , res)=> {
+	res.send('Creating the server and managing the server');
+});
 
-// Middleware
-app.use(bodyParser.json());
-app.use(cookieParser());
-app.use(cors());
+app.get('/about' , (req , res)=>{
+	res.send('ABOUT');
+});
 
-// My Routes
+app.get('/signin' , (req , res)=>{
+	res.send('SIGN_IN');
+});
 
-app.use("/api", authRoute);
+app.post('/signup' , (req , res)=>{
+	res.send('SIGN_UP');
+});
 
-// Port
-const port = process.env.PORT || 3000;
-// const port = 3000;
+app.put('/signout' , (req , res)=>{
+	res.send('SIGN_OUT')
+})
 
-app.listen(port, console.log(`The server is running on ${port}`));
+// port number
+const port = 3000;
+app.listen(port , ()=>{
+	console.log(`The server is running on ${port}`)
+})
