@@ -10,25 +10,11 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-app.get('/' , (req , res)=> {
-	res.send('Creating the server and managing the server');
-});
-
-app.get('/about' , (req , res)=>{
-	res.send('ABOUT');
-});
-
-app.get('/signin' , (req , res)=>{
-	res.send('SIGN_IN');
-});
-
-app.post('/signup' , (req , res)=>{
-	res.send('SIGN_UP');
-});
-
-app.put('/signout' , (req , res)=>{
-	res.send('SIGN_OUT')
+mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true, useUnifiedTopology: true }).then(()=>{
+	console.log('DB Connected')
 })
+
+
 
 // port number
 const port = 3000;
