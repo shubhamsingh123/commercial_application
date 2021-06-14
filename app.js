@@ -11,18 +11,28 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 const cors = require('cors');
 const app = express();
+const authRoutes = require('./routes/auth');
+
+//DB Connection
 
 mongoose.connect(process.env.DATABASE , {useNewUrlParser: true, useUnifiedTopology: true }).then(()=>{
 	console.log('DB Connected')
 })
 
+// Middleware
+
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(cors())
+app.use(cors());
 
 
-// port number
+// My Routes
+app.use('/api' , authRoutes)
+
+// Port
 const port = process.env.PORT || 3000;
+
+// Starting a server
 app.listen(port , ()=>{
 	console.log(`The server is running on ${port}`)
 })
