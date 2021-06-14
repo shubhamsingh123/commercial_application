@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
-const {signOut} = require('../controllers/auth')
+const {signOut , signUp} = require('../controllers/auth');
 
 
-router.get('/signout' , signOut)
+router.post('/signup' , signUp);
+router.get('/signout' , signOut);
 
 
 
