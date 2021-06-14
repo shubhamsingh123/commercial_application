@@ -1,4 +1,5 @@
 exports.signUp = (req , res) =>{
+	console.log("REQ BODY" , req.body);
 	res.json({
 		message : "signUp works !!!"
 	})
