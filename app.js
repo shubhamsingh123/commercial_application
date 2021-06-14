@@ -7,12 +7,18 @@ require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+const cors = require('cors');
 const app = express();
 
 mongoose.connect(process.env.DATABASE , {useNewUrlParser: true, useUnifiedTopology: true }).then(()=>{
 	console.log('DB Connected')
 })
 
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(cors())
 
 
 // port number
